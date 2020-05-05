@@ -9,43 +9,43 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var baseExperienceLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var lengthLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    var pokemon: Pokemon!
+    var trail: Trail!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if pokemon == nil {
-            pokemon = Pokemon(name: "", url: "")
+        if trail == nil {
+            trail = Trail!(name: "", url: "")
         }
-        nameLabel.text = pokemon.name
-        heightLabel.text = ""
-        weightLabel.text = ""
-        baseExperienceLabel.text = ""
+        label1.text = trail.name
+        nameLabel.text = ""
+        locationLabel.text = ""
+        lengthLabel.text = ""
         
         updateUserInterface()
 
     }
     
     func updateUserInterface() {
-             let pokeDetail = PokeDetail()
-           pokeDetail.url = pokemon.url
+             let trailDetail = TrailDetail()
+           trailDetail.url = trail.url
            //pass pokemon url that goes to the detail page to Pokedetail
-           pokeDetail.getData {
+           trailDetail.getData {
                DispatchQueue.main.async {
-                   self.weightLabel.text = "\(pokeDetail.weight)"
-                   self.heightLabel.text = "\(pokeDetail.height)"
-                   self.baseExperienceLabel.text = "\(pokeDetail.base_experience)"
+                   self.locationLabel.text = "\(trailDetail.location)"
+                   self.nameLabel.text = "\(trailDetail.name)"
+                   self.lengthLabel.text = "\(trailDetail.length)"
                    
                    // get and display image
                 //first check to see valid image
-                guard let url = URL(string: pokeDetail.imageURL) else {
+                guard let url = URL(string: trailDetail.imageURL) else {
                 self.imageView.image = UIImage(systemName: "blank.profile.image")
                 return
                }

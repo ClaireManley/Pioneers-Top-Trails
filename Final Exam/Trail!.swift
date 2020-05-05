@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Pokemon: Codable {
+struct Trail!: Codable {
     var name: String
     var url: String
     

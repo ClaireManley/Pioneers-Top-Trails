@@ -8,16 +8,16 @@
 
 import Foundation
 
-class PokemonData {
+class TrailData {
     private struct Returned: Codable {
         var count: Int
         var next: String
-        var results: [Pokemon]
+        var results: [Trail]
         
     }
     var count = 0
-    var url = "https://pokeapi.co/api/v2/pokemon/"
-    var pokeArray: [Pokemon] = []
+    var url = "https://www.trailrunproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=200747983-8b9b590ebe38cbd1bd26c730bfab2cca"
+    var trailArray: [Trail] = []
     
     func getData(completed: @escaping ()->()) {
         let urlString = url
@@ -46,7 +46,7 @@ class PokemonData {
                 let returned = try JSONDecoder().decode(Returned.self, from: data!)
                 self.count = returned.count
                 self.url = returned.next
-                self.pokeArray = self.pokeArray + returned.results
+                self.trailArray = self.trailArray + returned.results
                 
             } catch {
                 print("😡 JSON ERROR: \(error.localizedDescription)")

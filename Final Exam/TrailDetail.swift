@@ -8,18 +8,18 @@
 
 import Foundation
 
-class PokeDetail {
-    var height = 0.0
-    var weight = 0.0
-    var base_experience = 0.0
+class TrailDetail {
+    var name = 0.0
+    var location = 0.0
+    var length = 0.0
     var imageURL = ""
     var url = ""
     
     
     private struct Returned: Codable {
-        var height: Double
-        var weight: Double
-        var base_experience: Double
+        var name: Double
+        var location: Double
+        var length: Double
         var sprites: Sprites
         
         
@@ -52,9 +52,9 @@ class PokeDetail {
               // deal with the data
               do {
                   let returned = try JSONDecoder().decode(Returned.self, from: data!)
-                self.height = returned.height
-                self.weight = returned.weight
-                self.base_experience = returned.base_experience
+                self.name = returned.name
+                self.location = returned.location
+                self.length = returned.length
                 self.imageURL = returned.sprites.front_default
                 
               } catch {
